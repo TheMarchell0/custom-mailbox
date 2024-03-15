@@ -1,5 +1,7 @@
-import test from "./functions/test.js";
+import writeLetter from "./functions/writeLetter.js";
+import openLetter from "./functions/openLetter.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-    test();
+    writeLetter();
+    openLetter();
 });

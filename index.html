@@ -26,12 +26,12 @@
                                 class="letter-types__user-info-img"
                         />
                     </picture>
-                    <p class="letter-types__user-info-email">vladislav_boyko@test.ru</p>
+                    <p class="letter-types__user-info-email">vladislav_boyko@writeLetter.ru</p>
                 </div>
                 <ul class="letters-types__list">
                     <li class="letters-types__list-item hover-opacity">Входящие</li>
                     <li class="letters-types__list-item hover-opacity">Отправленные</li>
-                    <li class="letters-types__list-item letters-types__list-item_write hover-opacity"><span>Написать письмо</span></li>
+                    <li class="letters-types__list-item letters-types__list-item_write hover-opacity js-write-letter"><span>Написать письмо</span></li>
                 </ul>
             </div>
         </div>
@@ -46,8 +46,7 @@
                 <h2 class="letters-list__title">Входящие</h2>
                 <p class="letters-list__statistic">200 сообщений, 100 непрочитанных</p>
                 <ul class="letters-list__content">
-                    <li class="letters-list__content-item hover-opacity">
-                        <img class="letters-list__delete" src="images/delete-button.svg" alt="Иконка удаления">
+                    <li class="letters-list__content-item js-letter-item">
                         <div class="letters-list__head">
                             <p class="letters-list__head-name">Друг</p>
                             <p class="letters-list__head-time">10:00</p>
@@ -55,8 +54,7 @@
                         <p class="letters-list__letter-title">Заголовок первого письма</p>
                         <p class="letters-list__body">Привет, это тестовое сообщение для проверки работоспособности почтового ящика. Кстати, тут еще есть проверка на переполненность</p>
                     </li>
-                    <li class="letters-list__content-item hover-opacity">
-                        <img class="letters-list__delete" src="images/delete-button.svg" alt="Иконка удаления">
+                    <li class="letters-list__content-item js-letter-item">
                         <div class="letters-list__head">
                             <p class="letters-list__head-name">Тоже Друг</p>
                             <p class="letters-list__head-time">10:02</p>
@@ -64,8 +62,7 @@
                         <p class="letters-list__letter-title">Оригинальный заголовок второго письма</p>
                         <p class="letters-list__body">Тут еще есть проверка на переполненность. Ага, не влезло. Крутяк. Значит, работает) Ну так будем делать курсач?</p>
                     </li>
-                    <li class="letters-list__content-item hover-opacity">
-                        <img class="letters-list__delete" src="images/delete-button.svg" alt="Иконка удаления">
+                    <li class="letters-list__content-item js-letter-item">
                         <div class="letters-list__head">
                             <p class="letters-list__head-name">Все ещё Друг</p>
                             <p class="letters-list__head-time">10:04</p>
@@ -73,8 +70,7 @@
                         <p class="letters-list__letter-title">Повторяющийся заголовок третьего письма</p>
                         <p class="letters-list__body">Да что ж такое. Опять не влезло. Повторю. Будем делать курсач чтоб пройти аккредитацию?</p>
                     </li>
-                    <li class="letters-list__content-item hover-opacity">
-                        <img class="letters-list__delete" src="images/delete-button.svg" alt="Иконка удаления">
+                    <li class="letters-list__content-item js-letter-item">
                         <div class="letters-list__head">
                             <p class="letters-list__head-name">Опять Друг</p>
                             <p class="letters-list__head-time">10:04</p>
@@ -82,8 +78,7 @@
                         <p class="letters-list__letter-title">Очень очень очень длинный заголовок прямо очень очень</p>
                         <p class="letters-list__body">Да, это тоже работает</p>
                     </li>
-                    <li class="letters-list__content-item hover-opacity">
-                        <img class="letters-list__delete" src="images/delete-button.svg" alt="Иконка удаления">
+                    <li class="letters-list__content-item js-letter-item">
                         <div class="letters-list__head">
                             <p class="letters-list__head-name">Очень длинное имя очень прямо очень очень</p>
                             <p class="letters-list__head-time">10:04</p>
@@ -95,16 +90,66 @@
             </div>
         </div>
         <div class="main__block letters-content">
-            <div class="letters-content-empty">
+            <div class="letters-content-empty js-letter-content-empty">
                 <h2 class="letters-content-empty__title">Выберите элемент для чтения</h2>
                 <img class="letters-content-empty__img" src="images/letter-icon.svg"/>
                 <p class="letters-content-empty__text">Ничего не выбрано</p>
             </div>
-            <div class="container letters-content__container">
+            <div class="container letters-content__container letter-content__container_disable js-opened-message-content">
+                <img src="images/delete-button.svg" alt="Кнопка удаления">
+
+                <div class="letters-content__opened-message opened-message">
+                    <div class="opened-message__head">
+                        <picture>
+                            <source
+                                    srcset="images/avatar.png 1x, ../images/avatar@2x.png 2x"
+                            />
+                            <img
+                                    src="images/avatar.png"
+                                    alt="Фотография пользователя"
+                                    class="opened-message__head-img"
+                            />
+                        </picture>
+                        <div class="opened-message__head-user">
+                            <p class="opened-message__head-user-name">Друг</p>
+                            <p class="opened-message__head-user-title">Заголовок первого письма</p>
+                            <p class="opened-message__head-user-recipient">Кому: <span>vladislav_boyko@writeLetter.ru</span></p>
+                        </div>
+                        <p class="opened-message__head-date">14 марта 2024, 18:32</p>
+                    </div>
+                    <div class="opened-message__content">
+                        <p>Привет, это тестовое сообщение для проверки работоспособности почтового ящика. Кстати, тут еще есть проверка на переполненность!</p>
+                        <picture>
+                            <source
+                                    srcset="images/flowers.png 1x, ../images/flowers@2x.png 2x"
+                            />
+                            <img
+                                    src="images/flowers.png"
+                                    alt="Цветочки"
+                            />
+                        </picture>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 </main>
+<div class="write-modal js-write-modal">
+    <div class="write-modal__wrapper">
+        <p class="write-modal__title">Новое сообщение</p>
+        <p class="write-modal__close js-close hover-opacity">X</p>
+        <div class="write-modal__input-block">
+            <p class="write-modal__input-block-title">Кому: </p>
+            <input class="write-modal__input-block-input" type="text">
+        </div>
+        <div class="write-modal__input-block">
+            <p class="write-modal__input-block-title">Тема: </p>
+            <input class="write-modal__input-block-input" type="text">
+        </div>
+        <textarea class="write-modal__textarea"></textarea>
+        <button class="write-modal__submit hover-opacity">Отправить</button>
+    </div>
+</div>
 <script type="module" src="js/main.js"></script>
 </body>
 </html>
