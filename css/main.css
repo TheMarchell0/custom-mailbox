@@ -1,5 +1,8 @@
 @import "fonts.css";
 @import "normalize.css";
+@import "blocks/letters-types.css";
+@import "blocks/letters-list.css";
+@import "blocks/letters-content.css";
 
 * {
     font-family: "SF Pro", "Arial", sans-serif;
@@ -22,4 +25,25 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+.main {
+    display: flex;
+    height: 100vh;
+}
+.main__block {
+    color: #FFFFFF;
+}
+
+.main__block:not(:last-child) {
+    border-right: 1px solid #000000;
+}
+
+.hover-opacity {
+    cursor: pointer;
+    transition: 0.1s linear;
+}
+
+.hover-opacity:hover {
+    opacity: 0.6;
 }

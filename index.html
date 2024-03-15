@@ -12,11 +12,97 @@
 </head>
 <body>
 <main>
-    <section>
-
-    </section>
-    <section>
-
+    <section class="main">
+        <div class="main__block letters-types">
+            <div class="container letter-types__container">
+                <div class="letter-types__user-info">
+                    <picture>
+                        <source
+                                srcset="images/avatar.png 1x, ../images/avatar@2x.png 2x"
+                        />
+                        <img
+                                src="images/avatar.png"
+                                alt="Фотография пользователя"
+                                class="letter-types__user-info-img"
+                        />
+                    </picture>
+                    <p class="letter-types__user-info-email">vladislav_boyko@test.ru</p>
+                </div>
+                <ul class="letters-types__list">
+                    <li class="letters-types__list-item hover-opacity">Входящие</li>
+                    <li class="letters-types__list-item hover-opacity">Отправленные</li>
+                    <li class="letters-types__list-item letters-types__list-item_write hover-opacity"><span>Написать письмо</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main__block letters-list">
+            <div class="container letters-list__container">
+                <div class="letters-list__search">
+                    <input class="letters-list__search-input" type="text" placeholder="Поиск сообщений...">
+                    <button class="letters-list__search-button">
+                        <img src="images/search-icon.svg" alt="Иконка поиска">
+                    </button>
+                </div>
+                <h2 class="letters-list__title">Входящие</h2>
+                <p class="letters-list__statistic">200 сообщений, 100 непрочитанных</p>
+                <ul class="letters-list__content">
+                    <li class="letters-list__content-item hover-opacity">
+                        <img class="letters-list__delete" src="images/delete-button.svg" alt="Иконка удаления">
+                        <div class="letters-list__head">
+                            <p class="letters-list__head-name">Друг</p>
+                            <p class="letters-list__head-time">10:00</p>
+                        </div>
+                        <p class="letters-list__letter-title">Заголовок первого письма</p>
+                        <p class="letters-list__body">Привет, это тестовое сообщение для проверки работоспособности почтового ящика. Кстати, тут еще есть проверка на переполненность</p>
+                    </li>
+                    <li class="letters-list__content-item hover-opacity">
+                        <img class="letters-list__delete" src="images/delete-button.svg" alt="Иконка удаления">
+                        <div class="letters-list__head">
+                            <p class="letters-list__head-name">Тоже Друг</p>
+                            <p class="letters-list__head-time">10:02</p>
+                        </div>
+                        <p class="letters-list__letter-title">Оригинальный заголовок второго письма</p>
+                        <p class="letters-list__body">Тут еще есть проверка на переполненность. Ага, не влезло. Крутяк. Значит, работает) Ну так будем делать курсач?</p>
+                    </li>
+                    <li class="letters-list__content-item hover-opacity">
+                        <img class="letters-list__delete" src="images/delete-button.svg" alt="Иконка удаления">
+                        <div class="letters-list__head">
+                            <p class="letters-list__head-name">Все ещё Друг</p>
+                            <p class="letters-list__head-time">10:04</p>
+                        </div>
+                        <p class="letters-list__letter-title">Повторяющийся заголовок третьего письма</p>
+                        <p class="letters-list__body">Да что ж такое. Опять не влезло. Повторю. Будем делать курсач чтоб пройти аккредитацию?</p>
+                    </li>
+                    <li class="letters-list__content-item hover-opacity">
+                        <img class="letters-list__delete" src="images/delete-button.svg" alt="Иконка удаления">
+                        <div class="letters-list__head">
+                            <p class="letters-list__head-name">Опять Друг</p>
+                            <p class="letters-list__head-time">10:04</p>
+                        </div>
+                        <p class="letters-list__letter-title">Очень очень очень длинный заголовок прямо очень очень</p>
+                        <p class="letters-list__body">Да, это тоже работает</p>
+                    </li>
+                    <li class="letters-list__content-item hover-opacity">
+                        <img class="letters-list__delete" src="images/delete-button.svg" alt="Иконка удаления">
+                        <div class="letters-list__head">
+                            <p class="letters-list__head-name">Очень длинное имя очень прямо очень очень</p>
+                            <p class="letters-list__head-time">10:04</p>
+                        </div>
+                        <p class="letters-list__letter-title">Обычный заголовок</p>
+                        <p class="letters-list__body">И это тоже</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main__block letters-content">
+            <div class="letters-content-empty">
+                <h2 class="letters-content-empty__title">Выберите элемент для чтения</h2>
+                <img class="letters-content-empty__img" src="images/letter-icon.svg"/>
+                <p class="letters-content-empty__text">Ничего не выбрано</p>
+            </div>
+            <div class="container letters-content__container">
+            </div>
+        </div>
     </section>
 </main>
 <script type="module" src="js/main.js"></script>
