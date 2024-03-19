@@ -16,17 +16,7 @@
         <div class="main__block letters-types">
             <div class="container letter-types__container">
                 <div class="letter-types__user-info">
-                    <picture>
-                        <source
-                                srcset="images/avatar.png 1x, ../images/avatar@2x.png 2x"
-                        />
-                        <img
-                                src="images/avatar.png"
-                                alt="Фотография пользователя"
-                                class="letter-types__user-info-img"
-                        />
-                    </picture>
-                    <p class="letter-types__user-info-email">vladislav_boyko@writeLetter.ru</p>
+                    <p class="letter-types__user-info-email">boyko.course.work@gmail.com</p>
                 </div>
                 <ul class="letters-types__list">
                     <li class="letters-types__list-item hover-opacity">Входящие</li>
@@ -46,9 +36,7 @@
                 </div>
                 <h2 class="letters-list__title">Входящие</h2>
                 <p class="letters-list__statistic">200 сообщений, 100 непрочитанных</p>
-                <ul class="letters-list__content js-letters-list">
-
-                </ul>
+                <ul class="letters-list__content js-letters-list"></ul>
             </div>
         </div>
         <div class="main__block letters-content">
@@ -58,42 +46,8 @@
                 <p class="letters-content-empty__text">Ничего не выбрано</p>
             </div>
             <div class="container letters-content__container letter-content__container_disable js-opened-message-content">
-                <img src="images/delete-button.svg" alt="Кнопка удаления">
-
-                <div class="letters-content__opened-message opened-message">
-                    <!--<div class="opened-message__head">
-                        <picture>
-                            <source
-                                    srcset="images/avatar.png 1x, ../images/avatar@2x.png 2x"
-                            />
-                            <img
-                                    src="images/avatar.png"
-                                    alt="Фотография пользователя"
-                                    class="opened-message__head-img"
-                            />
-                        </picture>
-                        <div class="opened-message__head-user">
-                            <p class="opened-message__head-user-name">Друг</p>
-                            <p class="opened-message__head-user-title">Заголовок первого письма</p>
-                            <p class="opened-message__head-user-recipient">Кому:
-                                <span>vladislav_boyko@writeLetter.ru</span></p>
-                        </div>
-                        <p class="opened-message__head-date">14 марта 2024, 18:32</p>
-                    </div>
-                    <div class="opened-message__content">
-                        <p>Привет, это тестовое сообщение для проверки работоспособности почтового ящика. Кстати, тут
-                            еще есть проверка на переполненность!</p>
-                        <picture>
-                            <source
-                                    srcset="images/flowers.png 1x, ../images/flowers@2x.png 2x"
-                            />
-                            <img
-                                    src="images/flowers.png"
-                                    alt="Цветочки"
-                            />
-                        </picture>
-                    </div>
-                </div>-->
+                <img class="letters-content__delete-button js-delete-button disable" src="images/delete-button.svg" alt="Кнопка удаления" data-message-id="0">
+                <div class="letters-content__opened-message opened-message"></div>
             </div>
         </div>
     </section>
@@ -104,14 +58,14 @@
         <p class="write-modal__close js-close hover-opacity">X</p>
         <div class="write-modal__input-block">
             <p class="write-modal__input-block-title">Кому: </p>
-            <input class="write-modal__input-block-input" type="text">
+            <input class="write-modal__input-block-input js-new-letter-recipient" type="text">
         </div>
         <div class="write-modal__input-block">
             <p class="write-modal__input-block-title">Тема: </p>
-            <input class="write-modal__input-block-input" type="text">
+            <input class="write-modal__input-block-input js-new-letter-title" type="text">
         </div>
-        <textarea class="write-modal__textarea"></textarea>
-        <button class="write-modal__submit hover-opacity">Отправить</button>
+        <textarea class="write-modal__textarea js-new-letter-body"></textarea>
+        <button class="write-modal__submit hover-opacity js-submit">Отправить</button>
     </div>
 </div>
 <script type="module" src="js/main.js"></script>

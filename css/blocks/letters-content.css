@@ -7,7 +7,7 @@
     padding: 10px 15px;
 }
 
-.letter-content__container_disable {
+.letter-content__container.disable {
     display: none;
 }
 
@@ -42,7 +42,9 @@
     align-items: center;
     border-bottom: 1px solid rgba(217, 217, 217, 0.12);
     align-items: flex-start;
-    padding: 10px;
+    padding: 20px 20px 10px;
+    justify-content: space-between;
+    width: 100%;
 }
 .opened-message__head-img {
     width: 32px;
@@ -62,6 +64,7 @@
     font-size: 14px;
     color: rgba(255, 255, 255, 0.85);
     font-weight: 500;
+    margin: 10px 0;
 }
 
 .opened-message__head-user-recipient span {
@@ -72,10 +75,15 @@
     color: rgba(255, 255, 255, 0.55);
     font-size: 14px;
     font-weight: 500;
-    flex: auto;
 }
 
 .opened-message__content {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.85);
+    min-height: 300px;
+    padding: 30px;
+}
+
+.letters-content__delete-button.disable {
+    display: none;
 }

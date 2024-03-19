@@ -1,16 +1,15 @@
 const express = require('express');
 const { google } = require('googleapis');
 const credentials = require('../credentials/credentials.json');
-const token = require('./token.json');
-const cors = require('cors');
+const token = require('../credentials/token.json');
+const cors = require('cors');;
+const createEmail = require('../js/functions/gmail/helpers/createEmail.js');
 
 const app = express();
 const port = 3001;
 
 app.use(cors());
 app.use(express.json());
-
-const SCOPES = ['https://www.googleapis.com/auth/gmail.readonly'];
 
 const authorize = async () => {
     const { client_secret, client_id, redirect_uris } = credentials.installed;
@@ -33,6 +32,7 @@ const listEmails = async () => {
 
         const response = await gmail.users.messages.list({
             userId: 'me',
+            q: 'in:inbox',
         });
 
         const messages = response.data.messages;
@@ -56,6 +56,36 @@ app.get('/gmailApiRequest/getMessagesList', async (req, res) => {
     res.json(messages);
 });
 
+const listSentEmails = async () => {
+    try {
+        await authorizeAndCreateGmail();
+
+        const response = await gmail.users.messages.list({
+            userId: 'me',
+            q: 'in:sent', // Фильтр для получения только отправленных сообщений
+        });
+
+        const messages = response.data.messages;
+        const detailedMessages = await Promise.all(messages.map(async (message) => {
+            const detailedMessage = await gmail.users.messages.get({
+                userId: 'me',
+                id: message.id,
+            });
+            return detailedMessage.data;
+        }));
+
+        return detailedMessages;
+    } catch (error) {
+        console.error('Error fetching sent emails:', error);
+        return [];
+    }
+};
+
+app.get('/gmailApiRequest/getSentMessages', async (req, res) => {
+    const sentMessages = await listSentEmails();
+    res.json(sentMessages);
+});
+
 app.post('/gmailApiRequest/openMessage', async (req, res) => {
     const { messageId } = req.body;
 
@@ -76,28 +106,35 @@ app.post('/gmailApiRequest/openMessage', async (req, res) => {
     }
 });
 
-/*app.get('/gmailApiRequest/getMessageById/:messageId', async (req, res) => {
-    const messageId = req.params.messageId;
+const sendMessage = async (req, res) => {
+    const { recipientContent, subjectContent, messageContent } = req.body;
 
-    const getMessageById = async (messageId) => {
-        const auth = await authorize();
-        const gmail = google.gmail({ version: 'v1', auth });
-
-        try {
-            const response = await gmail.users.messages.get({
-                userId: 'me',
-                id: messageId,
-            });
-
-            return response.data;
-        } catch (error) {
-            console.error('Error fetching email by ID:', error);
-            return null;
+    try {
+        if (!gmail) {
+            await authorizeAndCreateGmail();
         }
-    };
 
-    const message = await getMessageById(messageId);
-    res.json(message);
-});*/
+        const email = createEmail(recipientContent, subjectContent, messageContent);
+
+        const base64EncodedEmail = Buffer.from(email).toString('base64').replace(/\+/g, '-').replace(/\//g, '_');
+
+        const response = await gmail.users.messages.send({
+            userId: 'me',
+            requestBody: {
+                raw: base64EncodedEmail
+            }
+        });
+
+        console.log('Email sent:', response.data);
+        res.status(200).json({ message: 'Email sent successfully' });
+    } catch (error) {
+        console.error('Error sending email:', error);
+        res.status(500).json({ error: 'Failed to send email' });
+    }
+};
+
+app.post('/gmailApiRequest/sendMessage', async (req, res) => {
+    await sendMessage(req, res);
+});
 
 app.listen(port, () => {console.log(`Server is running on http://localhost:${port}`)});

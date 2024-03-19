@@ -1,29 +1,37 @@
+import createMessageBody from "./helpers/createMessageBody.js";
+
+const emptyCover = document.querySelector('.js-letter-content-empty'),
+    messageBlock = document.querySelector('.js-opened-message-content'),
+    deleteButton = document.querySelector('.js-delete-button');
+
 function getMessageContent() {
-    setTimeout(()=> {
+    setTimeout(() => {
         document.querySelectorAll('.js-letter-item').forEach(item => {
             item.addEventListener('click', async () => {
+                if (!emptyCover.classList.contains('disable')) {
+                    emptyCover.classList.add('disable');
+                    messageBlock.classList.remove('disable');
+                    deleteButton.classList.remove('disable');
+                }
                 const messageId = item.getAttribute('data-message-id');
+                deleteButton.setAttribute("data-message-id", messageId);
                 try {
                     const response = await fetch('http://localhost:3001/gmailApiRequest/openMessage', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ messageId: messageId })
+                        body: JSON.stringify({messageId: messageId})
                     });
                     const data = await response.json();
-                    console.log(data)
                     const openedMessageBlock = document.querySelector('.opened-message');
-                    openedMessageBlock.innerHTML =
-                        `<h2>${data.payload.headers.find(header => header.name === 'Subject').value}</h2>
-                    <p>${data.snippet}</p>`
+                    openedMessageBlock.innerHTML = createMessageBody(data, messageId);
                     ;
                 } catch (error) {
                     console.error(error);
                 }
             });
         });
-        console.log('rabota')
     }, 2000)
 }
 
