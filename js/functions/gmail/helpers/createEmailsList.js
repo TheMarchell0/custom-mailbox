@@ -1,8 +1,10 @@
 import getInfo from "./getInfo.js";
+import letterVisual from "./letterVisual.js";
 
 function createEmailsList(data) {
     const emailsList = data.map(email => {
-        return `<li class="letters-list__content-item js-letter-item ${email.labelIds.includes('UNREAD') ? 'unread': 'read'}" data-message-id=${getInfo('id', email)}>
+
+        return `<li class="letters-list__content-item js-letter-item ${letterVisual(email)}" data-message-id=${getInfo('id', email)}>
         <div class="letters-list__head">
             <p class="letters-list__head-name">${getInfo('name', email)}</p>
             <p class="letters-list__head-time">${getInfo('date', email)}</p>
