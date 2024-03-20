@@ -1,3 +1,7 @@
+import getMessagesList from "./getMessagesList.js";
+import getMessageContent from "./getMessageContent.js";
+import markAsRead from "./markAsRead.js";
+
 function sendMessage() {
     const button = document.querySelector('.js-submit'),
         to = document.querySelector('.js-new-letter-recipient'),

@@ -12,14 +12,37 @@
 </head>
 <body>
 <main>
+    <div class="preloader">
+        <span></span>
+    </div>
+    <section class="auth disable">
+        <div class="auth__wrapper">
+
+            <p class="auth__title">Авторизация</p>
+            <div class="auth__input-wrapper">
+                <input class="auth__input" id="auth-email" type="text" maxlength="30" placeholder="">
+                <label for="auth-email" class="auth__input-title">Адрес эл. почты</label>
+            </div>
+            <div class="auth__input-wrapper">
+                <input class="auth__input" id="auth-password" type="password" autocomplete="off" maxlength="100"
+                       placeholder="">
+                <label for="auth-password" class="auth__input-title" autocomplete="off">Пароль</label>
+            </div>
+            <p class="auth__error-text js-error-text">Неправильный логин или пароль!</p>
+            <button class="auth__button js-auth-button hover-opacity">Вход</button>
+
+        </div>
+    </section>
     <section class="main">
         <div class="main__block letters-types">
             <div class="container letter-types__container">
                 <div class="letter-types__user-info">
                     <p class="letter-types__user-info-email">boyko.course.work@gmail.com</p>
+                    <p class="js-logout">logout</p>
                 </div>
                 <ul class="letters-types__list">
-                    <li class="letters-types__list-item active hover-opacity js-tab js-tab-incoming"><span>Входящие</span></li>
+                    <li class="letters-types__list-item active hover-opacity js-tab js-tab-incoming">
+                        <span>Входящие</span></li>
                     <li class="letters-types__list-item hover-opacity js-tab js-tab-sent"><span>Отправленные</span></li>
                     <li class="letters-types__list-item letters-types__list-item_write hover-opacity js-write-letter">
                         <span>Написать письмо</span></li>
@@ -29,13 +52,16 @@
         <div class="main__block letters-list">
             <div class="container letters-list__container">
                 <div class="letters-list__search">
-                    <input class="letters-list__search-input" type="text" placeholder="Поиск сообщений...">
+                    <input class="letters-list__search-input js-search-input" type="text" placeholder="Поиск сообщений..."
+                           maxlength="20">
                     <button class="letters-list__search-button">
                         <img src="images/search-icon.svg" alt="Иконка поиска">
                     </button>
                 </div>
                 <h2 class="letters-list__title">Входящие</h2>
-                <p class="letters-list__statistic">200 сообщений, 100 непрочитанных</p>
+                <p class="letters-list__not-found-text disable js-not-found-text">Ниче не найдено</p>
+                <p class="letters-list__statistic"><span class="js-letters-statistic-all">~</span> сообщений, <span
+                        class="js-letters-statistic-unread">~</span> непрочитанных</p>
                 <ul class="letters-list__content js-incoming-letters-list"></ul>
                 <ul class="letters-list__content disable js-sent-letters-list"></ul>
             </div>
@@ -47,7 +73,8 @@
                 <p class="letters-content-empty__text">Ничего не выбрано</p>
             </div>
             <div class="container letters-content__container disable js-opened-message-content">
-                <img class="letters-content__delete-button js-delete-button disable" src="images/delete-button.svg" alt="Кнопка удаления" data-message-id="0">
+                <img class="letters-content__delete-button hover-opacity js-delete-button disable"
+                     src="images/delete-button.svg" alt="Кнопка удаления" data-message-id="0">
                 <div class="letters-content__opened-message opened-message"></div>
             </div>
         </div>
@@ -59,13 +86,13 @@
         <p class="write-modal__close js-close hover-opacity">X</p>
         <div class="write-modal__input-block">
             <p class="write-modal__input-block-title">Кому: </p>
-            <input class="write-modal__input-block-input js-new-letter-recipient" type="text">
+            <input class="write-modal__input-block-input js-new-letter-recipient" type="text" maxlength="40">
         </div>
         <div class="write-modal__input-block">
             <p class="write-modal__input-block-title">Тема: </p>
-            <input class="write-modal__input-block-input js-new-letter-title" type="text">
+            <input class="write-modal__input-block-input js-new-letter-title" type="text" maxlength="40">
         </div>
-        <textarea class="write-modal__textarea js-new-letter-body"></textarea>
+        <textarea class="write-modal__textarea js-new-letter-body" maxlength="500"></textarea>
         <button class="write-modal__submit hover-opacity js-submit">Отправить</button>
     </div>
 </div>

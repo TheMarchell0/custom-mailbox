@@ -101,7 +101,7 @@ const listSentEmails = async () => {
 
         return detailedMessages;
     } catch (error) {
-        console.error('Error fetching sent emails:', error);
+        console.error('Error fetching sent emails:', error.response ? error.response.data : error.message);
         return [];
     }
 };
@@ -160,6 +160,74 @@ const sendMessage = async (req, res) => {
 
 app.post('/gmailApiRequest/sendMessage', async (req, res) => {
     await sendMessage(req, res);
+});
+
+app.post('/gmailApiRequest/deleteMessage', async (req, res) => {
+    const { deleteMessageId } = req.body;
+
+    try {
+        if (!gmail) {
+            await authorizeAndCreateGmail();
+        }
+
+        const response = await gmail.users.messages.trash({
+            userId: 'me',
+            id: deleteMessageId
+        });
+
+        console.log('Message deleted:', response.data);
+        res.status(200).json({ message: 'Message deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting message:', error);
+        res.status(500).json({ error: 'Failed to delete message' });
+    }
+});
+
+const getTotalMessagesCount = async () => {
+    try {
+        await authorizeAndCreateGmail();
+
+        const response = await gmail.users.messages.list({
+            userId: 'me',
+            q: 'in:inbox',
+        });
+
+        const totalMessagesCount = response.data.resultSizeEstimate;
+        return totalMessagesCount;
+    } catch (error) {
+        console.error('Error fetching total messages count:', error);
+        return 0;
+    }
+};
+
+// Функция для получения количества непрочитанных сообщений
+const getUnreadMessagesCount = async () => {
+    try {
+        await authorizeAndCreateGmail();
+
+        const response = await gmail.users.messages.list({
+            userId: 'me',
+            q: 'in:inbox is:unread',
+        });
+
+        const unreadMessagesCount = response.data.resultSizeEstimate;
+        return unreadMessagesCount;
+    } catch (error) {
+        console.error('Error fetching unread messages count:', error);
+        return 0;
+    }
+};
+
+app.get('/gmailApiRequest/getMessageCounts', async (req, res) => {
+    try {
+        const totalMessagesCount = await getTotalMessagesCount();
+        const unreadMessagesCount = await getUnreadMessagesCount();
+
+        res.json({ totalMessagesCount, unreadMessagesCount });
+    } catch (error) {
+        console.error('Error fetching message counts:', error);
+        res.status(500).json({ error: 'Failed to fetch message counts' });
+    }
 });
 
 app.listen(port, () => {console.log(`Server is running on http://localhost:${port}`)});

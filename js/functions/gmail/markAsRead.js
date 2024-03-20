@@ -1,9 +1,13 @@
+import getMessagesCount from "./helpers/getMessagesCount.js";
+
 function markAsRead() {
     setTimeout(()=> {
         const letters = document.querySelectorAll('.js-letter-item.unread');
         for (let letter of letters) {
             letter.addEventListener('click', async () => {
                 const messageId = letter.getAttribute('data-message-id');
+                letter.classList.remove('unread');
+                letter.classList.add('read');
 
                 try {
                     const response = await fetch('http://localhost:3001/gmailApiRequest/markAsRead', {
@@ -15,8 +19,7 @@ function markAsRead() {
                     });
 
                     if (response.ok) {
-                        letter.classList.remove('unread');
-                        letter.classList.add('read');
+                        getMessagesCount();
                     } else {
                         console.error('Failed to mark message as read');
                     }

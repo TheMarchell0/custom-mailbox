@@ -1,5 +1,7 @@
 @import "fonts.css";
 @import "normalize.css";
+@import "blocks/auth.css";
+@import "blocks/preloader.css";
 @import "blocks/letters-types.css";
 @import "blocks/letters-list.css";
 @import "blocks/letters-content.css";
@@ -18,20 +20,72 @@ body {
     background-color: #1E1E1E;
 }
 
-main {
-    min-height: 100vh;
-}
-
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
+input {
+    background: none;
+    outline: none;
+    border: none;
+    color: #FFFFFF;
+}
+
+input::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.25);
+    font-weight: 500;
+    line-height: 1;
+}
+
+input::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.25);
+    font-weight: 500;
+    line-height: 1;
+}
+
+input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.25);
+    font-weight: 500;
+    line-height: 1;
+}
+
+input::-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.25);
+    font-weight: 500;
+    line-height: 1;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+    font-weight: 500;
+    line-height: 1;
+}
+
+input::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.25);
+    font-weight: 500;
+    line-height: 1;
+}
+
+input::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.25);
+    font-weight: 500;
+    line-height: 1;
+}
+
+input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.25);
+    font-weight: 500;
+    line-height: 1;
+}
+
 .main {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
 }
+
 .main__block {
     color: #FFFFFF;
 }

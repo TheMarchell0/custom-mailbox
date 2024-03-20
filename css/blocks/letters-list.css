@@ -17,70 +17,42 @@
 }
 
 .letters-list__search-input {
-    background: none;
-    outline: none;
-    border: none;
     padding-left: 10px;
-    color: #FFFFFF;
     font-size: 14px;
     font-weight: 400;
     margin-right: 10px;
 }
 
 .letters-list__search-input::-webkit-input-placeholder {
-    color: rgba(255, 255, 255, 0.25);
     font-size: 14px;
-    font-weight: 500;
-    line-height: 1;
 }
 
 .letters-list__search-input::-moz-placeholder {
-    color: rgba(255, 255, 255, 0.25);
     font-size: 14px;
-    font-weight: 500;
-    line-height: 1;
 }
 
 .letters-list__search-input:-ms-input-placeholder {
-    color: rgba(255, 255, 255, 0.25);
     font-size: 14px;
-    font-weight: 500;
-    line-height: 1;
 }
 
 .letters-list__search-input::-ms-input-placeholder {
-    color: rgba(255, 255, 255, 0.25);
     font-size: 14px;
-    font-weight: 500;
-    line-height: 1;
 }
 
 .letters-list__search-input::placeholder {
-    color: rgba(255, 255, 255, 0.25);
     font-size: 14px;
-    font-weight: 500;
-    line-height: 1;
 }
 
 .letters-list__search-input::-webkit-input-placeholder {
-    color: rgba(255, 255, 255, 0.25);
     font-size: 14px;
-    font-weight: 500;
-    line-height: 1;
 }
 
 .letters-list__search-input::-moz-placeholder {
-    color: rgba(255, 255, 255, 0.25);
     font-size: 14px;
-    font-weight: 500;
-    line-height: 1;
 }
 
 .letters-list__search-input:-ms-input-placeholder {
-    color: rgba(255, 255, 255, 0.25);
     font-size: 14px;
-    font-weight: 500;
-    line-height: 1;
 }
 
 .letters-list__title {
@@ -116,6 +88,10 @@
     cursor: pointer;
 }
 
+.letters-list__content-item.disable {
+    display: none;
+}
+
 .letters-list__content-item.active {
     background-color: #2761CA;
     border-radius: 10px;
@@ -127,6 +103,18 @@
 
 .letters-list__content-item.unread {
     font-weight: bold;
+}
+
+.letters-list__content-item.unread::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 14px;
+    left: -7px;
+    background-color: #2761CA;
+    border-radius: 50%;
+    width: 9px;
+    height: 9px;
 }
 
 .letters-list__content-item:not(:last-child) {
@@ -180,4 +168,12 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.letters-list__not-found-text {
+    font-size: 30px;
+}
+
+.letters-list__not-found-text.disable {
+    display: none;
 }
