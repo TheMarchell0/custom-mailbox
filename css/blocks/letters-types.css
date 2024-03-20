@@ -9,6 +9,11 @@
 .letter-types__user-info {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.letter-types__logout {
+    width: 25px;
 }
 
 .letter-types__user-info-email {
