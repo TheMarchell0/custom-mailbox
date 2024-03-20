@@ -1,9 +1,10 @@
 import {month} from "./monthsCurrentFormat.js";
-import getCurrentTime from "./getCurrentTime.js";
+import timeFormatter from "./timeFormatter.js";
 
 function getDate(date) {
-    const time = date.split(' ');
-    return `${getCurrentTime(time[4].slice(0, 5))}, ${time[1]+' '+month[time[2]]}`;
+    const formattedDate = timeFormatter.format(new Date(date));
+    const time = formattedDate.split(' ');
+    return `${time[4].split(':').slice(0, 2).join(':')}, ${time[2].slice(0, -1)+' '+month[time[1]]}`;
 }
 
 export default getDate;

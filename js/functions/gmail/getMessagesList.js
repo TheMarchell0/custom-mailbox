@@ -1,22 +1,15 @@
-import getInfo from "./helpers/getInfo.js";
+import createEmailsList from "./helpers/createEmailsList.js";
+
+const incomingLettersContainer = document.querySelector('.js-incoming-letters-list');
+const sentLettersContainer = document.querySelector('.js-sent-letters-list');
 
 async function getMessagesList() {
-    const response = await fetch('http://localhost:3001/gmailApiRequest/getMessagesList');
-    const data = await response.json();
-    const lettersContainer = document.querySelector('.js-letters-list');
-
-    const emailsList = data.map(email => {
-        return `<li class="letters-list__content-item js-letter-item" data-message-id=${getInfo('id', email)}>
-            <div class="letters-list__head">
-                <p class="letters-list__head-name">${getInfo('name', email)}</p>
-                <p class="letters-list__head-time">${getInfo('date', email)}</p>
-            </div>
-            <p class="letters-list__letter-title">${getInfo('title', email)}</p>
-            <p class="letters-list__body">${getInfo('body', email)}</p>
-        </li>`;
-    }).join('');
-
-    lettersContainer.innerHTML = emailsList;
+    const incomingLettersResponse = await fetch('http://localhost:3001/gmailApiRequest/getIncomingMessages');
+    const incomingLettersData = await incomingLettersResponse.json();
+    const sentLettersResponse = await fetch('http://localhost:3001/gmailApiRequest/getSentMessages');
+    const sentLettersData = await sentLettersResponse.json();
+    incomingLettersContainer.innerHTML = createEmailsList(incomingLettersData);
+    sentLettersContainer.innerHTML = createEmailsList(sentLettersData);
 }
 
 export default getMessagesList;

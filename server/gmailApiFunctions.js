@@ -40,6 +40,7 @@ const listEmails = async () => {
             const detailedMessage = await gmail.users.messages.get({
                 userId: 'me',
                 id: message.id,
+                format: "metadata"
             });
             return detailedMessage.data;
         }));
@@ -51,7 +52,31 @@ const listEmails = async () => {
     }
 };
 
-app.get('/gmailApiRequest/getMessagesList', async (req, res) => {
+app.post('/gmailApiRequest/markAsRead', async (req, res) => {
+    const { messageId } = req.body;
+
+    try {
+        if (!gmail) {
+            await authorizeAndCreateGmail();
+        }
+
+        const response = await gmail.users.messages.modify({
+            userId: 'me',
+            id: messageId,
+            requestBody: {
+                removeLabelIds: ['UNREAD']
+            }
+        });
+
+        console.log('Message marked as read:', response.data);
+        res.status(200).json({ message: 'Message marked as read successfully' });
+    } catch (error) {
+        console.error('Error marking message as read:', error);
+        res.status(500).json({ error: 'Failed to mark message as read' });
+    }
+});
+
+app.get('/gmailApiRequest/getIncomingMessages', async (req, res) => {
     const messages = await listEmails();
     res.json(messages);
 });

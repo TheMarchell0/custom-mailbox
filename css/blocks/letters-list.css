@@ -102,6 +102,10 @@
     margin-top: 30px;
 }
 
+.letters-list__content.disable {
+    display: none;
+}
+
 .letters-list__content-item {
     border-bottom: 1px solid rgba(217, 217, 217, 0.12);
     max-width: 346px;
@@ -112,9 +116,17 @@
     cursor: pointer;
 }
 
-.letters-list__content-item_active {
+.letters-list__content-item.active {
     background-color: #2761CA;
     border-radius: 10px;
+}
+
+.letters-list__content-item.read {
+    opacity: 0.4;
+}
+
+.letters-list__content-item.unread {
+    font-weight: bold;
 }
 
 .letters-list__content-item:not(:last-child) {

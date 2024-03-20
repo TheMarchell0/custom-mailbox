@@ -19,8 +19,8 @@
                     <p class="letter-types__user-info-email">boyko.course.work@gmail.com</p>
                 </div>
                 <ul class="letters-types__list">
-                    <li class="letters-types__list-item hover-opacity">Входящие</li>
-                    <li class="letters-types__list-item hover-opacity">Отправленные</li>
+                    <li class="letters-types__list-item active hover-opacity js-tab js-tab-incoming"><span>Входящие</span></li>
+                    <li class="letters-types__list-item hover-opacity js-tab js-tab-sent"><span>Отправленные</span></li>
                     <li class="letters-types__list-item letters-types__list-item_write hover-opacity js-write-letter">
                         <span>Написать письмо</span></li>
                 </ul>
@@ -36,7 +36,8 @@
                 </div>
                 <h2 class="letters-list__title">Входящие</h2>
                 <p class="letters-list__statistic">200 сообщений, 100 непрочитанных</p>
-                <ul class="letters-list__content js-letters-list"></ul>
+                <ul class="letters-list__content js-incoming-letters-list"></ul>
+                <ul class="letters-list__content disable js-sent-letters-list"></ul>
             </div>
         </div>
         <div class="main__block letters-content">
@@ -45,7 +46,7 @@
                 <img class="letters-content-empty__img" src="images/letter-icon.svg"/>
                 <p class="letters-content-empty__text">Ничего не выбрано</p>
             </div>
-            <div class="container letters-content__container letter-content__container_disable js-opened-message-content">
+            <div class="container letters-content__container disable js-opened-message-content">
                 <img class="letters-content__delete-button js-delete-button disable" src="images/delete-button.svg" alt="Кнопка удаления" data-message-id="0">
                 <div class="letters-content__opened-message opened-message"></div>
             </div>

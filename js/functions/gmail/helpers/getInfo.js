@@ -8,7 +8,7 @@ function getInfo(infoType, subject) {
         case 'name':
             return subject.payload.headers.find(header => header.name === 'From').value.replace(/"/g, '').replace(/<[^>]*>/g, '');
         case 'recipient':
-            return subject.payload.headers.find(header => header.name === 'Delivered-To').value;
+            return subject.payload.headers.find(header => header.name === 'Delivered-To' || header.name === 'To').value;
         case 'date':
             return getDate(subject.payload.headers.find(header => header.name === 'Date').value);
         case 'body':

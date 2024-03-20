@@ -7,7 +7,7 @@ function createEmail(recipientContent, subjectContent, messageContent) {
         '',
         `${messageContent}`
     ];
-
+    console.log(subjectContent)
     return emailLines.join('\r\n');
 }
 
