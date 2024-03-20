@@ -8,10 +8,15 @@ function getMessageContent() {
     setTimeout(() => {
         document.querySelectorAll('.js-letter-item').forEach(item => {
             item.addEventListener('click', async () => {
+                const activeTab = document.querySelector('.js-tab.active')
                 if (!emptyCover.classList.contains('disable')) {
                     emptyCover.classList.add('disable');
                     messageBlock.classList.remove('disable');
-                    deleteButton.classList.remove('disable');
+                    if (activeTab.classList.contains('js-tab-incoming')) {
+                        deleteButton.classList.remove('disable');
+                    } else {
+                        deleteButton.classList.add('disable');
+                    }
                 }
                 const messageId = item.getAttribute('data-message-id');
                 deleteButton.setAttribute("data-message-id", messageId);
