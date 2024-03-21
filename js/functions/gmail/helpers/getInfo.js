@@ -5,6 +5,8 @@ function getInfo(infoType, subject) {
             return subject.id;
         case 'title':
             return subject.payload.headers.find(header => header.name === 'Subject').value;
+        case 'to':
+            return subject.payload.headers.find(header => header.name === 'To').value;
         case 'name':
             return subject.payload.headers.find(header => header.name === 'From').value.replace(/"/g, '').replace(/<[^>]*>/g, '');
         case 'recipient':

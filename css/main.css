@@ -6,6 +6,7 @@
 @import "blocks/letters-list.css";
 @import "blocks/letters-content.css";
 @import "blocks/write-modal.css";
+@import "blocks/notification.css";
 
 * {
     font-family: "SF Pro", "Arial", sans-serif;

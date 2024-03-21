@@ -12,6 +12,9 @@
 </head>
 <body>
 <main>
+    <div class="notification js-notification">
+        <p class="notification__text">Сообщение успешно отправлено!</p>
+    </div>
     <div class="preloader">
         <span></span>
     </div>
@@ -58,10 +61,11 @@
                         <img src="images/search-icon.svg" alt="Иконка поиска">
                     </button>
                 </div>
-                <h2 class="letters-list__title">Входящие</h2>
-                <p class="letters-list__not-found-text disable js-not-found-text">Ниче не найдено</p>
-                <p class="letters-list__statistic"><span class="js-letters-statistic-all">~</span> сообщений, <span
+                <h2 class="letters-list__title js-letters-list-title">Входящие</h2>
+                <p class="letters-list__not-found-text disable js-not-found-text">Ничего не найдено</p>
+                <p class="letters-list__statistic js-incoming-letters-list-statistic"><span class="js-letters-statistic-all">~</span> сообщений, <span
                         class="js-letters-statistic-unread">~</span> непрочитанных</p>
+                <p class="letters-list__statistic disable js-sent-letters-list-statistic"><span class="js-sent-letters-statistic">~</span> сообщений</p>
                 <ul class="letters-list__content js-incoming-letters-list"></ul>
                 <ul class="letters-list__content disable js-sent-letters-list"></ul>
             </div>
@@ -82,17 +86,21 @@
 </main>
 <div class="write-modal js-write-modal">
     <div class="write-modal__wrapper">
+        <div class="preloader prealoder_small disable js-sent-message-preloader">
+            <span></span>
+        </div>
         <p class="write-modal__title">Новое сообщение</p>
         <p class="write-modal__close js-close hover-opacity">X</p>
         <div class="write-modal__input-block">
             <p class="write-modal__input-block-title">Кому: </p>
-            <input class="write-modal__input-block-input js-new-letter-recipient" type="text" maxlength="40">
+            <input class="write-modal__input-block-input js-new-letter-recipient js-write-input" type="text" maxlength="40">
         </div>
         <div class="write-modal__input-block">
             <p class="write-modal__input-block-title">Тема: </p>
-            <input class="write-modal__input-block-input js-new-letter-title" type="text" maxlength="40">
+            <input class="write-modal__input-block-input js-new-letter-title js-write-input" type="text" maxlength="40">
         </div>
-        <textarea class="write-modal__textarea js-new-letter-body" maxlength="500"></textarea>
+        <textarea class="write-modal__textarea js-new-letter-body js-write-input" maxlength="500"></textarea>
+        <p class="write-modal__error-text js-write-error disable">Ошибка отправки!</p>
         <button class="write-modal__submit hover-opacity js-submit">Отправить</button>
     </div>
 </div>

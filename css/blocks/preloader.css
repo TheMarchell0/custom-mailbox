@@ -13,6 +13,13 @@
     transition: 0.3s linear;
 }
 
+.prealoder_small {
+    position: absolute;
+    min-height: auto;
+    background-color: #1e1e1eb3;
+    z-index: 1;
+}
+
 .preloader.disable {
     opacity: 0;
     pointer-events: none;

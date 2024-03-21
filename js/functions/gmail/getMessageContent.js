@@ -2,12 +2,14 @@ import createMessageBody from "./helpers/createMessageBody.js";
 
 const emptyCover = document.querySelector('.js-letter-content-empty'),
     messageBlock = document.querySelector('.js-opened-message-content'),
-    deleteButton = document.querySelector('.js-delete-button');
+    deleteButton = document.querySelector('.js-delete-button'),
+    openedMessageBlock = document.querySelector('.opened-message');
 
 function getMessageContent() {
     setTimeout(() => {
         document.querySelectorAll('.js-letter-item').forEach(item => {
             item.addEventListener('click', async () => {
+                console.log(1)
                 const activeTab = document.querySelector('.js-tab.active')
                 if (!emptyCover.classList.contains('disable')) {
                     emptyCover.classList.add('disable');
@@ -28,10 +30,13 @@ function getMessageContent() {
                         },
                         body: JSON.stringify({messageId: messageId})
                     });
-                    const data = await response.json();
-                    const openedMessageBlock = document.querySelector('.opened-message');
-                    openedMessageBlock.innerHTML = createMessageBody(data, messageId);
-                    ;
+                    if (response.ok) {
+                        const data = await response.json();
+                        openedMessageBlock.innerHTML = createMessageBody(data, messageId);
+                    }
+                    else {
+                        console.error('Failed to open message!');
+                    }
                 } catch (error) {
                     console.error(error);
                 }

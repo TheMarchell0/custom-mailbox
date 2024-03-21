@@ -1,5 +1,6 @@
 .letters-list {
     flex: 0 1 378px;
+    position: relative;
 }
 
 .letters-list__container {
@@ -65,6 +66,10 @@
 .letters-list__statistic {
     color: rgba(255, 255, 255, 0.65);
     font-size: 12px;
+}
+
+.letters-list__statistic.disable {
+    display: none;
 }
 
 .letters-list__content {
@@ -172,6 +177,11 @@
 
 .letters-list__not-found-text {
     font-size: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;
 }
 
 .letters-list__not-found-text.disable {
