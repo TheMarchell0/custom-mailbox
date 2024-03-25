@@ -1,4 +1,8 @@
 import createEmailsList from "./helpers/createEmailsList.js";
+import getMessageContent from "./getMessageContent.js";
+import openLetter from "../openLetter.js";
+import markAsRead from "./markAsRead.js";
+import deleteMessage from "./deleteMessage.js";
 
 const incomingLettersContainer = document.querySelector('.js-incoming-letters-list');
 const sentLettersContainer = document.querySelector('.js-sent-letters-list'),
@@ -12,6 +16,10 @@ async function getMessagesList() {
     sentLettersCount.innerHTML = sentLettersData.length;
     incomingLettersContainer.innerHTML = createEmailsList(incomingLettersData);
     sentLettersContainer.innerHTML = createEmailsList(sentLettersData);
+    getMessageContent();
+    openLetter();
+    markAsRead();
+    deleteMessage();
 }
 
 export default getMessagesList;

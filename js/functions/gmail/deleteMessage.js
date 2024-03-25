@@ -15,7 +15,6 @@ function deleteMessage() {
             });
 
             const data = await response.json();
-            console.log(data.message);
             if (response.ok) {
                 getMessagesCount();
             }

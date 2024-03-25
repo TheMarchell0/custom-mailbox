@@ -6,11 +6,11 @@ const emptyCover = document.querySelector('.js-letter-content-empty'),
     openedMessageBlock = document.querySelector('.opened-message');
 
 function getMessageContent() {
-    setTimeout(() => {
-        document.querySelectorAll('.js-letter-item').forEach(item => {
-            item.addEventListener('click', async () => {
-                console.log(1)
-                const activeTab = document.querySelector('.js-tab.active')
+    const messages = document.querySelectorAll('.js-letter-item');
+    messages.forEach(item => {
+        item.addEventListener('click', async () => {
+            const activeTab = document.querySelector('.js-tab.active')
+            if (activeTab) {
                 if (!emptyCover.classList.contains('disable')) {
                     emptyCover.classList.add('disable');
                     messageBlock.classList.remove('disable');
@@ -20,29 +20,28 @@ function getMessageContent() {
                         deleteButton.classList.add('disable');
                     }
                 }
-                const messageId = item.getAttribute('data-message-id');
-                deleteButton.setAttribute("data-message-id", messageId);
-                try {
-                    const response = await fetch('http://localhost:3001/gmailApiRequest/openMessage', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({messageId: messageId})
-                    });
-                    if (response.ok) {
-                        const data = await response.json();
-                        openedMessageBlock.innerHTML = createMessageBody(data, messageId);
-                    }
-                    else {
-                        console.error('Failed to open message!');
-                    }
-                } catch (error) {
-                    console.error(error);
+            }
+            const messageId = item.getAttribute('data-message-id');
+            deleteButton.setAttribute("data-message-id", messageId);
+            try {
+                const response = await fetch('http://localhost:3001/gmailApiRequest/openMessage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({messageId: messageId})
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    openedMessageBlock.innerHTML = createMessageBody(data, messageId);
+                } else {
+                    console.error('Failed to open message!');
                 }
-            });
+            } catch (error) {
+                console.error(error);
+            }
         });
-    }, 2000)
+    });
 }
 
 export default getMessageContent;

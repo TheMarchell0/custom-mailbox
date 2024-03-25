@@ -10,11 +10,11 @@ function preloader() {
         }, 2700)
         setTimeout(() => {
             preloaderBlock.classList.add('disable')
-        }, 3000)
+        }, 4000)
     } else {
         setTimeout(() => {
             preloaderBlock.classList.add('disable')
-        }, 3000)
+        }, 4000)
     }
 }
 
